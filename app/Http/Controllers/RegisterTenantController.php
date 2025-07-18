@@ -14,6 +14,7 @@ class RegisterTenantController extends Controller
        "usuario" => $request->usuario,
        "contrasena" => $request->contrasena,
        "correo" => $request->correo,
+       "telefono" => $request->telefono,
        "tipo_id" => $request->tipo_id,
        "numero_id" => $request->numero_id,
        "fecha_nacimiento" => $request->fecha_nacimiento

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('owner__register__properties', function (Blueprint $table) {
-            $table->id('id_property');
+            $table->id('id_propiedad');
             //informacion del inmueble
             $table->integer('numero_matricula');
             $table->integer('id_catasrtral');

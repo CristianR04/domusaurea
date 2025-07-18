@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('owner__register__contracts', function (Blueprint $table) {
-            $table->id('id_contrato');
-            $table->longText('contrato');
-            $table->timestamps();
+        Schema::create('contract_files', function (Blueprint $table) {
+        $table->id('id_archivoC');
+        $table->string('nombre'); 
+        $table->text('descripcion')->nullable(); 
+        $table->string('ruta_archivo'); 
+        $table->string('tipo_mime'); 
+        $table->timestamps();
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('owner__register__contracts');
+        Schema::dropIfExists('contract_files');
     }
 };

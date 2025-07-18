@@ -10,7 +10,8 @@ protected $fillable = [
 "tipo_usuario" ,
 "usuario"  ,     
 "contrasena" ,   
-"correo"  ,      
+"correo"  , 
+"telefono"  ,  
 "tipo_id"  ,     
 "numero_id"  ,   
 "fecha_nacimiento"

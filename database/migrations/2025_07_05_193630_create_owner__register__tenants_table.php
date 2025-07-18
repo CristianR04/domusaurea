@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('owner__register__tenants', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_Rinquilino');
+             $table->foreignId('id_propiedad');
+            $table->foreignId('id_inquilino');
+            $table->integer('numero_id');
+            $table->string('usuario');
+            $table->string('correo');
+            $table->integer('telefono');
             $table->timestamps();
         });
     }
