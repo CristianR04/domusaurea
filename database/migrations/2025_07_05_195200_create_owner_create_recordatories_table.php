@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('owner__create__recordatories', function (Blueprint $table) {
+        Schema::create('owner_create_recordatories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('owner__create__recordatories');
+        Schema::dropIfExists('owner_create_recordatories');
     }
 };

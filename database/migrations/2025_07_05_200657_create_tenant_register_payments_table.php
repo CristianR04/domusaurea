@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tenant__register__payments', function (Blueprint $table) {
+        Schema::create('tenant_register_payments', function (Blueprint $table) {
              $table->id('id_pago');
             $table->foreignId('id_propiedad')->constrained()->onDelete('cascade');
 
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tenant__register__payments');
+        Schema::dropIfExists('tenant_register_payments');
     }
 };

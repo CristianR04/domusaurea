@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('owner__register__contracts', function (Blueprint $table) {
+        Schema::create('owner_register_contracts', function (Blueprint $table) {
             $table->id('id_contrato');
-            $table->longText('contrato');
+            $table->string('propietario');
+            $table->string('inquilino');
+            $table->date('fecha');
+            $table->text('detalles');
+            $table->string('archivo_pdf'); // ruta del archivo
             $table->timestamps();
         });
     }
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('owner__register__contracts');
+        Schema::dropIfExists('owner_register_contracts');
     }
 };

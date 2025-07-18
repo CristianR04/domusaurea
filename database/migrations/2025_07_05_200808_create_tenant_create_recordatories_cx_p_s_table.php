@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tenant__contract__acces', function (Blueprint $table) {
+        Schema::create('tenant_create_recordatories_cx_p_s', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tenant__contract__acces');
+        Schema::dropIfExists('tenant_create_recordatories_cx_p_s');
     }
 };

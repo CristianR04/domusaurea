@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('owner__register__properties', function (Blueprint $table) {
+        Schema::create('owner_register_properties', function (Blueprint $table) {
             $table->id('id_propiedad');
             //informacion del inmueble
             $table->integer('numero_matricula');
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('owner__register__properties');
+        Schema::dropIfExists('owner_register_properties');
     }
 };
