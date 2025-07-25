@@ -8,7 +8,7 @@ class TenantContractAccesController extends Controller
 {
     public function listarPorPropiedad($propiedad_id)
 {
-    $contratos = ContractAccess::where('propiedad_id', $propiedad_id)
+    $contratos = ContractAccess::where('id_propiedad', $propiedad_id)
         ->with('contrato') // relacion contrato en el modelo
         ->get();
 

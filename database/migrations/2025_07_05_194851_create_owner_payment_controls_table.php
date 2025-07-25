@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('owner_payment_controls', function (Blueprint $table) {
-             $table->id('id_pago');
+             $table->id('id_pagoc');
             $table->foreignId('id_propiedad')->constrained()->onDelete('cascade');
 
             $table->string('servicio')->nullable();           // agua, luz, etc.

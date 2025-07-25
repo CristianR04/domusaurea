@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\document_property;
-use Illuminate\Support\Facades\Storage;
+
 
 
 class DocumentPropertyController extends Controller

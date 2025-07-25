@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('tipo_id');
             $table->string('numero_id');
             $table->date('fecha_nacimiento');
+            $table->string('nombre');
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ protected $fillable = [
 "telefono"  ,  
 "tipo_id"  ,     
 "numero_id"  ,   
-"fecha_nacimiento"
+"fecha_nacimiento",
+"nombre"
 ];
 }

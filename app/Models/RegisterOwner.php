@@ -13,7 +13,8 @@ protected $fillable = [
 "correo"  ,      
 "tipo_id"  ,     
 "numero_id"  ,   
-"fecha_nacimiento"
+"fecha_nacimiento",
+"nombre"
 ];
     
 
