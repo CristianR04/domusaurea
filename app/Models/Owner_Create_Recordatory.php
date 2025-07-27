@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Owner_Create_Recordatory extends Model
 {
+     protected $table = 'owner_create_recordatories';
+
+    protected $primaryKey = 'id_recordatorio';
+
     protected $fillable = [
         'id_inquilino',
         'id_propiedad',

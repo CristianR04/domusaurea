@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tenant_Register_Payment extends Model
 {
+     protected $table = 'tenant_register_payments';
+
+    protected $primaryKey = 'id_pago';
+    
     protected $fillable = [
         'id_propiedad',
         'servicio',

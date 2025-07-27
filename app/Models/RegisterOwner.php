@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegisterOwner extends Model
 {
+     protected $table = 'register_owners';
+
+    protected $primaryKey = 'id_owner';
+
 protected $fillable = [
 "tipo_usuario" ,
 "usuario"  ,     

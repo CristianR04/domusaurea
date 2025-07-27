@@ -7,7 +7,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('tenant_create_recordatories_cx_p_s', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_recordatorioT');
 
             $table->foreignId('id_inquilino')->constrained('inquilinos')->onDelete('cascade');
             $table->foreignId('id_propiedad')->constrained('owner_register_properties')->onDelete('cascade');

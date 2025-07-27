@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class registertenant extends Model
 {
+    protected $table = 'register_tenants';
+
+    protected $primaryKey = 'id_tenant';
+
 protected $fillable = [
 "tipo_usuario" ,
 "usuario"  ,     
