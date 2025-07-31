@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OwnerCreateReport extends Model
+class Owner_Create_Report extends Model
 {
     protected $table = 'owner_create_reports';
 

@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('owner_register_contracts', function (Blueprint $table) {
             $table->id('id_contrato');
+            $table->unsignedBigInteger('id_propiedad');
             $table->string('propietario');
             $table->string('inquilino');
             $table->date('fecha');
             $table->text('detalles');
-            $table->string('archivo_pdf'); // ruta del archivo
+            $table->string('archivo_pdf');
             $table->timestamps();
+
+            $table->foreign('id_propiedad')
+                ->references('id_propiedad')
+                ->on('owner_register_properties')
+                ->onDelete('cascade');
         });
     }
 

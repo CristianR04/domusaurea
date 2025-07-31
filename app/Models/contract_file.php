@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contrato extends Model
+class contract_file extends Model
 {
     protected $table = 'contract_files';
     protected $primaryKey = 'id_archivoC';
@@ -21,4 +21,5 @@ class Contrato extends Model
     {
         return $this->belongsTo(OwnerRegisterProperty::class, 'id_propiedad');
     }
+    
 }

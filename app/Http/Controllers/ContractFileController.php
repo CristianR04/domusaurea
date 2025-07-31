@@ -6,7 +6,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Contrato;
+use App\Models\contract_file;
 
 class ContractFileController extends Controller
 {
@@ -30,7 +30,7 @@ class ContractFileController extends Controller
         $path = $archivo->storeAs('public/contratos', $nombreArchivo);
         $url  = Storage::url($path); // Accesible desde /storage/...
 
-        $contrato = Contrato::create([
+        $contrato = contract_file::create([
             'id_propiedad' => $request->id_propiedad,
             'nombre'       => $nombreArchivo,
             'descripcion'  => $request->descripcion,

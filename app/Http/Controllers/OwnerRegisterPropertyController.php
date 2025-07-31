@@ -25,7 +25,7 @@ class OwnerRegisterPropertyController extends Controller
             'correo'                => 'required|email|max:255',
         ]);
 
-        $propiedad = OwnerRegisterProperty::create($validated);
+        $propiedad = Owner_Register_Property::create($validated);
 
         return response()->json([
             'mensaje' => 'Propiedad registrada correctamente.',

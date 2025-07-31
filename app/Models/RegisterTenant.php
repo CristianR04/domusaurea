@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class registertenant extends Model
+class RegisterTenant extends Model
 {
     protected $table = 'register_tenants';
 

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OwnerRegisterProperty extends Model
+class Owner_Register_Property extends Model
 {
     protected $table = 'owner_register_properties';
 
@@ -25,4 +25,26 @@ class OwnerRegisterProperty extends Model
         'telefono',
         'correo',
     ];
+
+    public function contrato(){
+        return $this->belongsTo(contract_file::class, "id_archivoC");
+    }
+
+    public function documentos()
+    {
+        return $this->hasMany(DocumentProperty::class, 'id_propiedad');
+    }
+  public function contratos()
+{
+    return $this->hasMany(contract_file::class, 'id_propiedad');
+}
+ public function recordatorios()
+{
+    return $this->hasMany(OwnerCreateRecordatory::class, 'id_propiedad');
+}
+public function pagos()
+{
+    return $this->hasMany(OwnerPaymentControl::class, 'id_propiedad');
+}
+
 }

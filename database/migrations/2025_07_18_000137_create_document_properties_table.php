@@ -6,24 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('document_properties', function (Blueprint $table) {
-        $table->id('id_documento');
-        $table->string('nombre_original'); 
-        $table->string('ruta'); 
-        $table->text('descripcion')->nullable(); 
-        $table->string('tipo_mime')->nullable(); 
-        $table->timestamps();
-    });
+            $table->id('id_documento');
+            $table->unsignedBigInteger('id_propiedad');
+            $table->string('nombre_original');
+            $table->string('ruta');
+            $table->text('descripcion')->nullable();
+            $table->string('tipo_mime');
+            $table->timestamps();
+
+            $table->foreign('id_propiedad')
+                ->references('id_propiedad')
+                ->on('owner_register_properties')
+                ->onDelete('cascade');
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('document_properties');

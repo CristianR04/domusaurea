@@ -18,7 +18,7 @@ class OwnerRegisterTenantController extends Controller
             'telefono'     => 'required|numeric',
         ]);
 
-        $registro = OwnerRegisterTenant::create($validated);
+        $registro = Owner_Register_Tenant::create($validated);
 
         return response()->json([
             'mensaje' => 'Inquilino asociado correctamente a la propiedad.',

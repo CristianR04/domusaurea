@@ -32,7 +32,7 @@ class OwnerCreateReportController extends Controller
     ]);
 
     // 1. Crear el registro en la base de datos
-    $reporte = OwnerCreateReport::create($validated);
+    $reporte = Owner_Create_Report::create($validated);
 
     // 2. Generar PDF
     $pdf = Pdf::loadView('reportes.reporte', ['data' => $validated]);
@@ -51,6 +51,40 @@ class OwnerCreateReportController extends Controller
         'data'    => $reporte,
         'archivo_pdf' => $url,
     ], 201);
+
+   
+}
+ //  Ver reportes (filtrados por id_inquilino opcionalmente)
+public function index(Request $request)
+{
+    $query = Owner_Create_Report::query();
+
+    if ($request->has('id_inquilino')) {
+        $query->where('id_inquilino', $request->id_inquilino);
+    }
+
+    if ($request->has('id_propiedad')) {
+        $query->where('matricula_inmobiliaria', $request->id_propiedad);
+    }
+
+    $reportes = $query->orderBy('created_at', 'desc')->get();
+
+    return response()->json([
+        'mensaje' => 'Reportes encontrados.',
+        'data' => $reportes,
+    ]);
+}
+
+//  Descargar un PDF por nombre de archivo
+public function descargarPDF($nombreArchivo)
+{
+    $path = storage_path("app/public/reportes/{$nombreArchivo}");
+
+    if (!file_exists($path)) {
+        return response()->json(['mensaje' => 'Archivo no encontrado.'], 404);
+    }
+
+    return response()->download($path);
 }
 
 }

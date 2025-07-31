@@ -21,4 +21,10 @@ class Owner_Payment_Control extends Model
         'nombre_archivo',
         'tipo_mime',
     ];
+
+    public function propiedad()
+{
+    return $this->belongsTo(OwnerRegisterProperty::class, 'id_propiedad');
+}
+
 }

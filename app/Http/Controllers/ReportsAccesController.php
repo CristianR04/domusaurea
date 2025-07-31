@@ -9,7 +9,7 @@ class OwnerReportAccessController extends Controller
     // Listar accesos por propiedad
     public function index($id_propiedad)
     {
-        $registros = OwnerReportAccess::where('id_propiedad', $id_propiedad)
+        $registros = Reports_Acces::where('id_propiedad', $id_propiedad)
                         ->with('reporte')
                         ->get();
 
@@ -26,7 +26,7 @@ class OwnerReportAccessController extends Controller
     // Descargar un PDF por ID
     public function descargar($id)
     {
-        $registro = OwnerReportAccess::findOrFail($id);
+        $registro = Reports_Acces::findOrFail($id);
         $ruta = str_replace('/storage/', 'public/', $registro->archivo_pdf);
 
         if (!Storage::exists($ruta)) {

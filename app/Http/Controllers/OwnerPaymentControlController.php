@@ -9,7 +9,7 @@ class OwnerPaymentControlController extends Controller
     // Listar todos los pagos por propiedad
     public function index($id_propiedad)
     {
-        $pagos = OwnerPaymentControl::where('id_propiedad', $id_propiedad)
+        $pagos = Owner_Payment_Control::where('id_propiedad', $id_propiedad)
                     ->orderByDesc('fecha_pago')
                     ->get();
 
@@ -26,7 +26,7 @@ class OwnerPaymentControlController extends Controller
     // Descargar archivo de soporte de pago
     public function descargar($id_pago)
     {
-        $pago = OwnerPaymentControl::findOrFail($id_pago);
+        $pago = Owner_Payment_Control::findOrFail($id_pago);
 
         if (!$pago->archivo_url) {
             return response()->json(['mensaje' => 'Este pago no tiene un archivo de soporte adjunto.'], 404);

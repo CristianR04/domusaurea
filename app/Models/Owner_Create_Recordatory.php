@@ -26,4 +26,15 @@ class Owner_Create_Recordatory extends Model
         'repetir_mensualmente' => 'boolean',
         'visto' => 'boolean',
     ];
+
+    public function propiedad()
+{
+    return $this->belongsTo(OwnerRegisterProperty::class, 'id_propiedad');
+}
+
+public function inquilino()
+{
+    return $this->belongsTo(Inquilino::class, 'id_inquilino');
+}
+
 }

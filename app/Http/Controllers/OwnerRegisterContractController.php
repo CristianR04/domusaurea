@@ -12,15 +12,14 @@ class OwnerRegisterContractController extends Controller
      public function store(Request $request)
     {
         $request->validate([
+            'id_propiedad' => 'required|exists:owner_register_properties,id_propiedad',
             'propietario' => 'required|string',
             'inquilino' => 'required|string',
             'fecha' => 'required|date',
             'detalles' => 'required|string',
         ]);
 
-        // Recoger los datos
-        $data = $request->only(['propietario', 'inquilino', 'fecha', 'detalles']);
-
+    $data = $request->only(['id_propiedad', 'propietario', 'inquilino', 'fecha', 'detalles']);  
         // Generar PDF
         $pdf = Pdf::loadView('contratos.contrato', ['contrato' => $data]);
 
@@ -32,17 +31,54 @@ class OwnerRegisterContractController extends Controller
         Storage::put($rutaAlmacenamiento, $pdf->output());
 
         // Guardar en base de datos
-        $contrato = Contrato::create([
-            'propietario' => $data['propietario'],
-            'inquilino' => $data['inquilino'],
-            'fecha' => $data['fecha'],
-            'detalles' => $data['detalles'],
-            'archivo_pdf' => Storage::url("contratos/{$nombreArchivo}"),
-        ]);
+        $contrato = Owner_Register_Contract::create([
+        'id_propiedad' => $data['id_propiedad'],
+        'propietario' => $data['propietario'],
+        'inquilino' => $data['inquilino'],
+        'fecha' => $data['fecha'],
+        'detalles' => $data['detalles'],
+        'archivo_pdf' => Storage::url("contratos/{$nombreArchivo}"),
+]);
+
 
         return response()->json([
             'mensaje' => 'Contrato generado y guardado exitosamente.',
             'contrato' => $contrato,
         ]);
     }
+
+    // Ver contratos de una propiedad
+public function contratosPorPropiedad($id_propiedad)
+{
+    $contratos = Contrato::where('id_propiedad', $id_propiedad)
+                        ->orderBy('fecha', 'desc')
+                        ->get();
+
+    if ($contratos->isEmpty()) {
+        return response()->json(['mensaje' => 'Esta propiedad no tiene contratos registrados.'], 404);
+    }
+
+    return response()->json([
+        'mensaje' => 'Contratos encontrados.',
+        'data' => $contratos
+    ]);
+}
+
+// 2. Descargar un contrato PDF por ID
+public function descargar($id)
+{
+    $contrato = Contrato::findOrFail($id);
+
+    if (!$contrato->archivo_pdf) {
+        return response()->json(['mensaje' => 'Este contrato no tiene PDF asociado.'], 404);
+    }
+
+    $rutaStorage = str_replace('/storage/', 'public/', $contrato->archivo_pdf);
+
+    if (!Storage::exists($rutaStorage)) {
+        return response()->json(['mensaje' => 'El archivo no existe en el servidor.'], 404);
+    }
+
+    return Storage::download($rutaStorage, 'Contrato_' . Str::slug($contrato->inquilino) . '.pdf');
+}
 }

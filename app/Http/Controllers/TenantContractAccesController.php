@@ -8,7 +8,7 @@ class TenantContractAccesController extends Controller
 {
     public function listarPorPropiedad($propiedad_id)
 {
-    $contratos = ContractAccess::where('id_propiedad', $propiedad_id)
+    $contratos = Tenant_Contract_Acces::where('id_propiedad', $propiedad_id)
         ->with('contrato') // relacion contrato en el modelo
         ->get();
 
@@ -20,5 +20,24 @@ class TenantContractAccesController extends Controller
         'mensaje' => 'Contratos encontrados.',
         'data' => $contratos
     ]);
+}
+
+public function descargarContrato($id)
+{
+    $acceso = TenantContractAccess::with('contrato')->findOrFail($id);
+
+    if (!$acceso->contrato || !$acceso->contrato->archivo_pdf) {
+        return response()->json(['mensaje' => 'Contrato no disponible.'], 404);
+    }
+
+    $ruta = str_replace('/storage/', 'public/', $acceso->contrato->archivo_pdf);
+
+    if (!Storage::exists($ruta)) {
+        return response()->json(['mensaje' => 'El archivo no se encuentra en el servidor.'], 404);
+    }
+
+    $nombreArchivo = 'Contrato_' . Str::slug($acceso->contrato->inquilino) . '.pdf';
+
+    return Storage::download($ruta, $nombreArchivo);
 }
 }

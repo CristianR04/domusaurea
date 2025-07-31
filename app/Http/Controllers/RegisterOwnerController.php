@@ -12,11 +12,12 @@ class RegisterOwnerController extends Controller
         RegisterOwner::create([
         "tipo_usuario" => $request->tipo_usuario,
        "usuario" => $request->usuario,
-       "contrasena" => $request->contrasena,
-       "correo" => $request->correo,
+       "password" => $request->contrasena,
+       "email" => $request->correo,
        "tipo_id" => $request->tipo_id,
        "numero_id" => $request->numero_id,
-       "fecha_nacimiento" => $request->fecha_nacimiento
+       "fecha_nacimiento" => $request->fecha_nacimiento,
+       "name" => $request->nombre
         ]);
 
         return response()->json([
@@ -24,5 +25,21 @@ class RegisterOwnerController extends Controller
         ], 201);
 
         
+    }
+
+    public function Login(Request $request) {
+        $user = User::where("email", $request->correo)->first();
+
+        if (Hash::check($request->Contrasena, $user->password)) {
+            $token = $user->createToken("token")->plainTextToken;
+            return response()->json([
+                "status"=> "success",
+                "token"=> $token,
+            ]);
+        }
+        return response()->json([
+            "status"=> "error",
+            "message"=> "Error en las credenciales"
+        ], 409);
     }
 }

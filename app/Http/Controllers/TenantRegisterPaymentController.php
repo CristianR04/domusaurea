@@ -40,8 +40,8 @@ class TenantRegisterPaymentController extends Controller
             $nombreArchivo  = $archivo->getClientOriginalName();
         }
 
-        $pago = Pago::create([
-            'id_propiedad'   => $request->propiedad_id,
+        $pago = Tenant_Register_Payment::create([
+            'id_propiedad'   => $request->id_propiedad,
             'servicio'       => $request->servicio,
             'concepto'       => $request->concepto,
             'monto'          => $request->monto,
