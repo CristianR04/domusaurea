@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('owner_payment_controls', function (Blueprint $table) {
              $table->id('id_pagoc');
-            $table->foreignId('id_propiedad')->constrained()->onDelete('cascade');
-
+            $table->unsignedBigInteger('id_propiedad');
             $table->string('servicio')->nullable();           // agua, luz, etc.
             $table->string('concepto')->nullable();           // "Pago de julio"
             $table->decimal('monto', 10, 2);
             $table->date('fecha_pago');           
             $table->text('observaciones')->nullable();
-
             // Soporte (1 solo archivo por pago)
             $table->string('archivo_url')->nullable();        // URL pública
             $table->string('nombre_archivo')->nullable();     // nombre original

@@ -28,7 +28,6 @@ return new class extends Migration
             //Egresos
             $table->biginteger('mantenimiento');
             $table->biginteger('administracion');
-            $table->biginteger('impuestos');
             $table->biginteger('servicios_publicos');
             //Saldos
             $table->biginteger('ingreso_mensual');

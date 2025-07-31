@@ -17,8 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_propiedad'); 
             $table->string('archivo_pdf');
             $table->timestamps();
-
-            $table->foreign('id_contrato')->references('id_accesC')->on('owner__register__contracts')->onDelete('cascade');
         });
     }
 

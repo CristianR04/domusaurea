@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tenant_register_payments', function (Blueprint $table) {
              $table->id('id_pago');
-            $table->foreignId('id_propiedad')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('id_propiedad');
 
             $table->string('servicio')->nullable();           // agua, luz, etc.
             $table->string('concepto')->nullable();           // "Pago de julio"

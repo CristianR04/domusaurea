@@ -17,9 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_propiedad');
             $table->string('archivo_pdf'); // Ruta pública del PDF
             $table->timestamps();
-
-            $table->foreign('reporte_id')->references('id_report')->on('owner_create_reports')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

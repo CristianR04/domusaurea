@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('owner_create_recordatories', function (Blueprint $table) {
             $table->id('id_recordatorio');
 
-            $table->foreignId('id_inquilino')->constrained('inquilinos')->onDelete('cascade');
-            $table->foreignId('id_propiedad')->constrained('owner_register_properties')->onDelete('cascade');
+            $table->unsignedBigInteger('id_inquilino');
+            $table->unsignedBigInteger('id_propiedad');
 
             $table->string('concepto'); // Arriendo, servicios, etc.
             $table->decimal('monto', 10, 2)->nullable();
