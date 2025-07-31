@@ -26,7 +26,7 @@ Route::get('/recordatorios/{id_inquilino}', [OwnerCreateRecordatoryController::c
 // Marcar un recordatorio como visto
 Route::put('/recordatorios/{id}/visto', [OwnerCreateRecordatoryController::class, 'marcarComoVisto']);
 //crear reportes
- Route::post('/reportes', [OwnerCreateReportController::class, 'store']);
+Route::post('/reportes', [OwnerCreateReportController::class, 'store']);
  // Ver todos los reportes o filtrarlos
 Route::get('/reportes', [OwnerCreateReportController::class, 'index']);
 // Descargar un PDF por nombre de archivo
