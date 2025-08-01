@@ -11,7 +11,7 @@ class Tenant_Create_Recordatories_CxP extends Model
     protected $primaryKey = 'id_recordatorioT';
 
     protected $fillable = [
-        'id_inquilino',
+        'id_user',
         'id_propiedad',
         'concepto',
         'monto',

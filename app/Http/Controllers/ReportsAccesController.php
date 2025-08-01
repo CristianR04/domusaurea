@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\OwnerReportAccess;
+use App\Models\Reports_Acces;
 use Illuminate\Support\Facades\Storage;
 
 class OwnerReportAccessController extends Controller

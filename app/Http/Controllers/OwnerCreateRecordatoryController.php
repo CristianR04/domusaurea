@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Owner_Create_Recordatory;
 class OwnerCreateRecordatoryController extends Controller
 {
    // Crear recordatorio
     public function store(Request $request)
     {
         $data = $request->validate([
-            'id_inquilino'          => 'required|exists:inquilinos,id',
+            'id_user'          => 'required|exists:inquilinos,id',
             'id_propiedad'          => 'required|exists:owner_register_properties,id_propiedad',
             'concepto'              => 'required|string|max:255',
             'monto'                 => 'nullable|numeric|min:0',
@@ -28,11 +28,11 @@ class OwnerCreateRecordatoryController extends Controller
     }
 
     // Mostrar recordatorios activos para un inquilino
-    public function index($id_inquilino)
+    public function index($id_user)
     {
         $hoy = now()->toDateString();
 
-        $recordatorios = Owner_Create_Recordatory::where('id_inquilino', $id_inquilino)
+        $recordatorios = Owner_Create_Recordatory::where('id_user', $id_user)
             ->where(function ($query) use ($hoy) {
                 $query->where('fecha_recordatorio', $hoy)
                       ->orWhere('repetir_mensualmente', true);

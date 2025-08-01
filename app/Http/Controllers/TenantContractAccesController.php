@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use App\Models\Tenant_Contract_Acces;
 
 class TenantContractAccesController extends Controller
 {
@@ -24,7 +27,7 @@ class TenantContractAccesController extends Controller
 
 public function descargarContrato($id)
 {
-    $acceso = TenantContractAccess::with('contrato')->findOrFail($id);
+    $acceso = Tenant_Contract_Acces::with('contrato')->findOrFail($id);
 
     if (!$acceso->contrato || !$acceso->contrato->archivo_pdf) {
         return response()->json(['mensaje' => 'Contrato no disponible.'], 404);

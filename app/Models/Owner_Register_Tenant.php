@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Owner_Register_Tenant extends Model
 {
      protected $table = 'owner_register_tenants';
@@ -12,7 +13,7 @@ class Owner_Register_Tenant extends Model
 
     protected $fillable = [
         'id_propiedad',
-        'id_inquilino',
+        'id_user',
         'numero_id',
         'usuario',
         'correo',

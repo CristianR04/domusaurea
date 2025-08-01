@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Owner_Register_Property;
+use App\Models\User;
 
 class Owner_Create_Recordatory extends Model
 {
@@ -29,12 +31,12 @@ class Owner_Create_Recordatory extends Model
 
     public function propiedad()
 {
-    return $this->belongsTo(OwnerRegisterProperty::class, 'id_propiedad');
+    return $this->belongsTo(Owner_Register_Property::class, 'id_propiedad');
 }
 
 public function inquilino()
 {
-    return $this->belongsTo(Inquilino::class, 'id_inquilino');
+    return $this->belongsTo(User::class, 'id_user');
 }
 
 }

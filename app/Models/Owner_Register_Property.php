@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\document_property;
+use App\Models\Owner_Create_Recordatory;
+use App\Models\Owner_Payment_Control;
 
 class Owner_Register_Property extends Model
 {
@@ -26,25 +29,21 @@ class Owner_Register_Property extends Model
         'correo',
     ];
 
-    public function contrato(){
-        return $this->belongsTo(contract_file::class, "id_archivoC");
-    }
-
     public function documentos()
     {
-        return $this->hasMany(DocumentProperty::class, 'id_propiedad');
+            return $this->hasMany(document_property::class, 'id_documento');
     }
-  public function contratos()
-{
-    return $this->hasMany(contract_file::class, 'id_propiedad');
-}
- public function recordatorios()
-{
-    return $this->hasMany(OwnerCreateRecordatory::class, 'id_propiedad');
-}
-public function pagos()
-{
-    return $this->hasMany(OwnerPaymentControl::class, 'id_propiedad');
-}
+    public function contratos()
+    {
+        return $this->hasMany(contract_file::class, 'id_archivoC');
+    }
+    public function recordatorios()
+    {
+        return $this->hasMany(Owner_Create_Recordatory::class, 'id_recordatorio');
+    }
+    public function pagos()
+    {
+        return $this->hasMany(Owner_Payment_Control::class, 'id_pagoc');
+    }
 
 }

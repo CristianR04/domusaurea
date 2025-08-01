@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\contract_file;
+use App\Models\Owner_Register_Property;
 
 class Tenant_Contract_Acces extends Model
 {
@@ -18,10 +20,10 @@ class Tenant_Contract_Acces extends Model
 
 public function contrato()
 {
-    return $this->belongsTo(Contrato::class, 'id_contrato');
+    return $this->belongsTo(contract_file::class, 'id_contrato');
 }
  public function propiedad()
     {
-        return $this->belongsTo(OwnerRegisterProperty::class, 'id_propiedad');
+        return $this->belongsTo(Owner_Register_Property::class, 'id_propiedad');
     }
 }

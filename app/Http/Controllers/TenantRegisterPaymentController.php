@@ -5,6 +5,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Tenant_Register_Payment;
 
 class TenantRegisterPaymentController extends Controller
 {

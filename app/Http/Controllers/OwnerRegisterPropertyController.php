@@ -2,34 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OwnerRegisterProperty;
+
 use Illuminate\Http\Request;
+use App\Models\Owner_Register_Property;
 
 class OwnerRegisterPropertyController extends Controller
 {
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        $validated = $request->validate([
-            'numero_matricula'      => 'required|integer',
-            'id_catastral'          => 'required|integer',
-            'direccion_inmueble'    => 'required|string|max:255',
-            'area_terreno'          => 'required|string|max:100',
-            'uso'                   => 'required|string|max:100',
-            'estrato'               => 'required|string|max:10',
-            'nombre_propietario'    => 'required|string|max:255',
-            'tipo_id'               => 'required|string|max:50',
-            'numero_id'             => 'required|integer',
-            'estado_civil'          => 'required|string|max:50',
-            'direccion_propietario' => 'required|string|max:255',
-            'telefono'              => 'required|numeric',
-            'correo'                => 'required|email|max:255',
-        ]);
+       Owner_Register_Property::create([
+            'numero_matricula'      =>  $request->numero_matricula,
+            'id_catastral'          =>  $request->id_catastral,
+            'direccion_inmueble'    =>  $request->direccion_inmueble,
+            'area_terreno'          =>  $request->area_terreno,
+            'uso'                   =>  $request->uso,
+            'estrato'               =>  $request->estrato,
+            'nombre_propietario'    =>  $request->nombre_propietario,
+            'tipo_id'               => $request->tipo_id,
+            'numero_id'             => $request->numero_id,
+            'estado_civil'          => $request->estado_civil,
+            'direccion_propietario' => $request->direccion_propietario,
+            'telefono'              => $request->telefono,
+            'correo'                => $request->correo,
+        
 
-        $propiedad = Owner_Register_Property::create($validated);
+       ]);
 
         return response()->json([
-            'mensaje' => 'Propiedad registrada correctamente.',
-            'data'    => $propiedad,
+           "message" => "Registro exitoso"
         ], 201);
     }
 }

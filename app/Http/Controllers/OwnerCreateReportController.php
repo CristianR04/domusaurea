@@ -5,6 +5,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Owner_Create_Report;
 
 class OwnerCreateReportController extends Controller
 {
@@ -17,7 +18,7 @@ class OwnerCreateReportController extends Controller
         'tipo_propiedad'          => 'required|string|max:100',
         'uso_inmueble'            => 'required|string|max:100',
         'estado'                  => 'required|string|max:100',
-        'id_inquilino'            => 'required|integer',
+        'id_user'            => 'required|integer',
         'inquilino'               => 'required|string|max:255',
         'arriendo_mensual'        => 'required|integer|min:0',
         'estado_pago'             => 'required|string|max:100',
@@ -59,8 +60,8 @@ public function index(Request $request)
 {
     $query = Owner_Create_Report::query();
 
-    if ($request->has('id_inquilino')) {
-        $query->where('id_inquilino', $request->id_inquilino);
+    if ($request->has('id_user')) {
+        $query->where('id_user', $request->id_user);
     }
 
     if ($request->has('id_propiedad')) {

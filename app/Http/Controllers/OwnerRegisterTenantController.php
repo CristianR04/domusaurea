@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Owner_Register_Tenant;
 class OwnerRegisterTenantController extends Controller
 {
       // Asociar un inquilino a una propiedad
@@ -11,7 +11,7 @@ class OwnerRegisterTenantController extends Controller
     {
         $validated = $request->validate([
             'id_propiedad' => 'required|exists:owner_register_properties,id_propiedad',
-            'id_inquilino' => 'required|integer',
+            'id_user' => 'required|integer',
             'numero_id'    => 'required|integer',
             'usuario'      => 'required|string|max:255',
             'correo'       => 'required|email|max:255',

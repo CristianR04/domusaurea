@@ -6,6 +6,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Owner_Register_Contract;
+use App\Models\contract_file;
 
 class OwnerRegisterContractController extends Controller
 {
@@ -50,7 +52,7 @@ class OwnerRegisterContractController extends Controller
     // Ver contratos de una propiedad
 public function contratosPorPropiedad($id_propiedad)
 {
-    $contratos = Contrato::where('id_propiedad', $id_propiedad)
+    $contratos = contract_file::where('id_propiedad', $id_propiedad)
                         ->orderBy('fecha', 'desc')
                         ->get();
 
@@ -67,7 +69,7 @@ public function contratosPorPropiedad($id_propiedad)
 // 2. Descargar un contrato PDF por ID
 public function descargar($id)
 {
-    $contrato = Contrato::findOrFail($id);
+    $contrato = contract_file::findOrFail($id);
 
     if (!$contrato->archivo_pdf) {
         return response()->json(['mensaje' => 'Este contrato no tiene PDF asociado.'], 404);

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Owner_Register_Property;
 
 class Owner_Payment_Control extends Model
 {
@@ -24,7 +25,7 @@ class Owner_Payment_Control extends Model
 
     public function propiedad()
 {
-    return $this->belongsTo(OwnerRegisterProperty::class, 'id_propiedad');
+    return $this->belongsTo(Owner_Register_Property::class, 'id_propiedad');
 }
 
 }

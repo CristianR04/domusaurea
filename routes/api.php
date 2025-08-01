@@ -2,13 +2,26 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterOwnerController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OwnerRegisterContractController;
+use App\Http\Controllers\DocumentPropertyController;
+use App\Http\Controllers\OwnerCreateRecordatoryController;
+use App\Http\Controllers\OwnerCreateReportController;
+use App\Http\Controllers\OwnerPaymentControlController;
+use App\Http\Controllers\OwnerRegisterPropertyController;
+use App\Http\Controllers\OwnerRegisterTenantController;
+use App\Http\Controllers\OwnerReportAccessController;
+use App\Http\Controllers\TenantContractAccesController;
+use App\Http\Controllers\ContractFileController;
+use App\Http\Controllers\TenantCreateRecordatoriesCxPController;
+use App\Http\Controllers\TenantRegisterPaymentController;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/registrar-propietario',[RegisterOwnerController::class,'create']);
+Route::post('/registro-user', [UserController::class, 'create']);
 //crear un contrato
 Route::post('/contratos/generar', [OwnerRegisterContractController::class, 'store']);
 //subir archivo de contratos
@@ -36,7 +49,7 @@ Route::get('/pagos/{id_propiedad}', [OwnerPaymentControlController::class, 'inde
 // Descargar soporte de un pago
 Route::get('/pagos/descargar/{id_pago}', [OwnerPaymentControlController::class, 'descargar']);
 //registrar propiedad
-Route::post('/propiedades', [OwnerRegisterPropertyController::class, 'store']);
+Route::post('/propiedades', [OwnerRegisterPropertyController::class, 'create']);
 //asociar un inquilino a propiedad
 Route::post('/inquilinos/asociar', [OwnerRegisterTenantController::class, 'store']);
 // Ver  reportes por propiedad
