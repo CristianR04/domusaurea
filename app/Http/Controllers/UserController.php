@@ -25,19 +25,22 @@ use Illuminate\support\Facades\Validator;
     }
 
     public function login(Request $request) {
-        $user = User::where("email", $request->correo)->first();
+    $user = User::where("email", $request->correo)->first();
 
-        if (Hash::check($request->contrasena, $user->password)) {
-            $token = $user->createToken("token")->plainTextToken;
-            return response()->json([
-                "status"=> "success",
-                "token"=> $token,
-            ]);
-        }
+    if (!$user || !Hash::check($request->contrasena, $user->password)) {
         return response()->json([
             "status"=> "error",
             "message"=> "Error en las credenciales"
         ], 409);
     }
+
+    $token = $user->createToken("token")->plainTextToken;
+    return response()->json([
+        "status"=> "success",
+        "token"=> $token,
+        "user" => $user  // Para que el frontend pueda acceder al rol
+    ]);
+}
+
 }
  
