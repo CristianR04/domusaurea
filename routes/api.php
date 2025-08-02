@@ -53,7 +53,7 @@ Route::get('/pagos/descargar/{id_pago}', [OwnerPaymentControlController::class, 
 //registrar propiedad
 Route::post('/propiedades', [OwnerRegisterPropertyController::class, 'create']);
 //asociar un inquilino a propiedad
-Route::post('/inquilinos/asociar', [OwnerRegisterTenantController::class, 'store']);
+Route::post('/inquilinos/asociar', [OwnerRegisterTenantController::class, 'create']);
 // Ver  reportes por propiedad
 Route::get('/reportes-acceso/{id_propiedad}', [OwnerReportAccessController::class, 'index']);
 // Descargar un reporte PDF por ID de acceso
