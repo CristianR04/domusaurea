@@ -9,21 +9,19 @@ class OwnerCreateRecordatoryController extends Controller
    // Crear recordatorio
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'id_user'          => 'required|exists:inquilinos,id',
-            'id_propiedad'          => 'required|exists:owner_register_properties,id_propiedad',
-            'concepto'              => 'required|string|max:255',
-            'monto'                 => 'nullable|numeric|min:0',
-            'fecha_recordatorio'    => 'required|date|after_or_equal:today',
-            'repetir_mensualmente'  => 'required|boolean',
-            'notas'                 => 'nullable|string',
+       Owner_Create_Recordatory::create([
+            'id_user'          =>  $request->id_user,
+            'id_propiedad'          => $request->id_propiedad,
+            'concepto'              => $request->concepto,
+            'monto'                 => $request->monto,
+            'fecha_recordatorio'    => $request->fecha_recordatorio,
+            'repetir_mensualmente'  => $request->repetir_mensualmente,
+            'notas'                 => $request->notas,
         ]);
-
-        $reminder = Owner_Create_Recordatory::create($data);
 
         return response()->json([
             'mensaje' => 'Recordatorio creado correctamente.',
-            'data' => $reminder,
+            
         ], 201);
     }
 

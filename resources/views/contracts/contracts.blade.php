@@ -9,10 +9,10 @@
 </head>
 <body>
     <h2>Contrato de Arrendamiento</h2>
-    <p><strong>Propietario:</strong> {{ $contrato['propietario'] }}</p>
-    <p><strong>Inquilino:</strong> {{ $contrato['inquilino'] }}</p>
-    <p><strong>Fecha:</strong> {{ $contrato['fecha'] }}</p>
+    <p><strong>Propietario:</strong> {{ $contracts['propietario'] }}</p>
+    <p><strong>Inquilino:</strong> {{ $contracts['inquilino'] }}</p>
+    <p><strong>Fecha:</strong> {{ $contracts['fecha'] }}</p>
     <hr>
-    <p>{{ $contrato['detalles'] }}</p>
+    <p>{{ $contracts['detalles'] }}</p>
 </body>
 </html>

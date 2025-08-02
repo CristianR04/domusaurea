@@ -15,13 +15,15 @@ use App\Http\Controllers\TenantContractAccesController;
 use App\Http\Controllers\ContractFileController;
 use App\Http\Controllers\TenantCreateRecordatoriesCxPController;
 use App\Http\Controllers\TenantRegisterPaymentController;
-
+use App\Models\User;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
 Route::post('/registro-user', [UserController::class, 'create']);
+//Login
+Route::post('/login', [UserController::class, 'login']);
 //crear un contrato
 Route::post('/contratos/generar', [OwnerRegisterContractController::class, 'store']);
 //subir archivo de contratos
