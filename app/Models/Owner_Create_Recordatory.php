@@ -13,7 +13,7 @@ class Owner_Create_Recordatory extends Model
     protected $primaryKey = 'id_recordatorio';
 
     protected $fillable = [
-        'id_inquilino',
+        'id_user',
         'id_propiedad',
         'concepto',
         'monto',

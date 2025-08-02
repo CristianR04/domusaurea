@@ -17,9 +17,27 @@ use Illuminate\support\Facades\Validator;
             "password" => Hash::make($request->contrasena),
             "rol" => $request->rol, 
         ]);
+
+        
         return response()->json([
             "message" => "Registro exitoso"
         ], 201);
+    }
+
+    public function Login(Request $request) {
+        $user = User::where("email", $request->Correo)->first();
+
+        if (Hash::check($request->Contrasena, $user->password)) {
+            $token = $user->createToken("token")->plainTextToken;
+            return response()->json([
+                "status"=> "success",
+                "token"=> $token,
+            ]);
+        }
+        return response()->json([
+            "status"=> "error",
+            "message"=> "Error en las credenciales"
+        ], 409);
     }
 }
  

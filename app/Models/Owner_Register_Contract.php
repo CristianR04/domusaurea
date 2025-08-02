@@ -24,4 +24,6 @@ class Owner_Register_Contract extends Model
     {
         return $this->belongsTo(Owner_Register_Property::class, 'id_propiedad', 'id_propiedad');
     }
+
+    
 }

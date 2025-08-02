@@ -11,11 +11,7 @@ class DocumentPropertyController extends Controller
 {
     public function documentos(Request $request)
     {
-        $request->validate([
-            'id_propiedad' => 'required|exists:owner_register_properties,id_propiedad',
-            'archivo'      => 'required|file|mimes:jpg,jpeg,png,pdf,docx,zip|max:10240',
-            'descripcion'  => 'nullable|string',
-        ]);
+        
 
         $file = $request->file('archivo');
         $path = $file->store('public/archivos');
