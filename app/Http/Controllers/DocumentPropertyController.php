@@ -19,7 +19,8 @@ class DocumentPropertyController extends Controller
         ]);
 
         $file = $request->file('archivo');
-        $path = $file->store('public/archivos');
+        $path = $request->file('archivo')->store('archivos', 'public');
+
 
         $archivo = document_property::create([
             'id_propiedad'     => $request->id_propiedad,

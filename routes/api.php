@@ -68,3 +68,5 @@ Route::get('/cxp/recordatorios/{id_inquilino}', [TenantCreateRecordatoriesCxPCon
 Route::put('/cxp/recordatorios/visto/{id}', [TenantCreateRecordatoriesCxPController::class, 'marcarComoVisto']);
 //registrar un pago
 Route::post('/pagos-inquilino', [TenantRegisterPaymentController::class, 'store']);
+
+Route::get('/buscar-propiedad/{id_catastral}', [OwnerRegisterPropertyController::class, 'buscarPorIdCatastral']);
