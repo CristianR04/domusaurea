@@ -9,20 +9,20 @@ class OwnerRegisterTenantController extends Controller
       // Asociar un inquilino a una propiedad
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'id_propiedad' => 'required|exists:owner_register_properties,id_propiedad',
-            'id_user' => 'required|integer',
-            'numero_id'    => 'required|integer',
-            'usuario'      => 'required|string|max:255',
-            'correo'       => 'required|email|max:255',
-            'telefono'     => 'required|numeric',
+        Owner_Register_Tenant::create([
+            'id_propiedad' => $request->id_propiedad,
+            'id_user' => $request->id_user,
+            'numero_id'    => $request->numero_id,
+            'usuario'      => $request->usuario,
+            'correo'       => $request->correo,
+            'telefono'     => $request->telefono,
         ]);
 
-        $registro = Owner_Register_Tenant::create($validated);
+       
 
         return response()->json([
             'mensaje' => 'Inquilino asociado correctamente a la propiedad.',
-            'data'    => $registro,
+            
         ], 201);
     }
 }
