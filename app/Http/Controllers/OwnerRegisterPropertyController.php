@@ -50,4 +50,4 @@ class OwnerRegisterPropertyController extends Controller
 }
 
 }
-
+ 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('owner_register_tenants', function (Blueprint $table) {
             $table->id('id_Rinquilino');
              $table->foreignId('id_propiedad');
-            $table->foreignId('id_inquilino');
+            $table->foreignId('id_user');
             $table->integer('numero_id');
             $table->string('usuario');
             $table->string('correo');
