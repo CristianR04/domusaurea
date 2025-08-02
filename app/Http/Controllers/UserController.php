@@ -24,10 +24,10 @@ use Illuminate\support\Facades\Validator;
         ], 201);
     }
 
-    public function Login(Request $request) {
-        $user = User::where("email", $request->Correo)->first();
+    public function login(Request $request) {
+        $user = User::where("email", $request->correo)->first();
 
-        if (Hash::check($request->Contrasena, $user->password)) {
+        if (Hash::check($request->contrasena, $user->password)) {
             $token = $user->createToken("token")->plainTextToken;
             return response()->json([
                 "status"=> "success",
