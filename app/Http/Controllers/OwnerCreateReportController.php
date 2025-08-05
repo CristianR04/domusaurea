@@ -79,15 +79,15 @@ public function index(Request $request)
 }
 
 //  Descargar un PDF por nombre de archivo
-public function descargarPDF($matricula)
+public function descargarPDF($id_propiedad)
 {
     // Buscar el último reporte con esa matrícula
-    $reporte = Owner_Create_Report::where('matricula_inmobiliaria', $matricula)
+    $reporte = Owner_Create_Report::where('id_propiedad', $id_propiedad)
                 ->latest()
                 ->first();
 
     if (!$reporte || !isset($reporte->archivo_pdf)) {
-        return response()->json(['mensaje' => 'Reporte no encontrado para esta matrícula.'], 404);
+        return response()->json(['mensaje' => 'Reporte no encontrado para este ID.'], 404);
     }
 
     // Convertir URL pública a ruta de storage
@@ -98,7 +98,7 @@ public function descargarPDF($matricula)
     }
 
     // Descargar
-    return Storage::download($rutaStorage, 'reporte_' . $matricula . '.pdf');
+    return Storage::download($rutaStorage, 'reporte_' . $id_propiedad . '.pdf');
 }
 
 }
