@@ -35,7 +35,7 @@ return new class extends Migration
             //Seguimiento
             $table->string('contrato');
             $table->string('impuestos');
-            $table->mediumText('observaaciones');
+            $table->mediumText('observaciones');
             $table->timestamps();
         });
     }

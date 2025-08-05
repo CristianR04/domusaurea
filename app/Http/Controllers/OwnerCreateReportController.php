@@ -18,7 +18,7 @@ class OwnerCreateReportController extends Controller
         'tipo_propiedad'          => 'required|string|max:100',
         'uso_inmueble'            => 'required|string|max:100',
         'estado'                  => 'required|string|max:100',
-        'id_user'            => 'required|integer',
+        'id_inquilino'            => 'required|integer',
         'inquilino'               => 'required|string|max:255',
         'arriendo_mensual'        => 'required|integer|min:0',
         'estado_pago'             => 'required|string|max:100',

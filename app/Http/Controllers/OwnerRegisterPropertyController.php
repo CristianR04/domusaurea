@@ -34,20 +34,20 @@ class OwnerRegisterPropertyController extends Controller
     }
 
     public function buscarPorIdCatastral($id_catastral)
-{
-    $propiedad = Owner_Register_Property::where('id_catastral', $id_catastral)->first();
+    {
+        $propiedad = Owner_Register_Property::where('id_catastral', $id_catastral)->first();
 
-    if ($propiedad) {
-        return response()->json([
-            "data" => $propiedad,
-            "message" => "Consulta exitosa"
-        ], 200);
-    } else {
-        return response()->json([
-            "message" => "Propiedad no encontrada"
-        ], 404);
+        if ($propiedad) {
+            return response()->json([
+                "data" => $propiedad,
+                "message" => "Consulta exitosa"
+            ], 200);
+        } else {
+            return response()->json([
+                "message" => "Propiedad no encontrada"
+            ], 404);
+        }
     }
-}
 
 }
- 
+
