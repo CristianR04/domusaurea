@@ -45,7 +45,7 @@ Route::post('/reportes', [OwnerCreateReportController::class, 'store']);
  // Ver todos los reportes o filtrarlos
 Route::get('/reportes', [OwnerCreateReportController::class, 'index']);
 // Descargar un PDF por nombre de archivo
-Route::get('/reportes/descargar/{nombreArchivo}', [OwnerCreateReportController::class, 'descargarPDF']); 
+Route::get('/reportes/descargar/{matricula}', [OwnerCreateReportController::class, 'descargarPDF']); 
 // Ver pagos por propiedad
 Route::get('/pagos/{id_propiedad}', [OwnerPaymentControlController::class, 'index']);
 // Descargar soporte de un pago
