@@ -9,7 +9,7 @@ use App\Models\Owner_Create_Report;
 
 class OwnerCreateReportController extends Controller
 {
-  public function store(Request $request)
+public function store(Request $request)
 {
     $validated = $request->validate([
         'nombre_propiedad'        => 'required|string|max:255',
@@ -32,29 +32,31 @@ class OwnerCreateReportController extends Controller
         'observaciones'           => 'nullable|string',
     ]);
 
-    // 1. Crear el registro en la base de datos
-    $reporte = Owner_Create_Report::create($validated);
+    // Generar PDF
+    $pdf = Pdf::loadView('reportes.reporte', ['data' => $validated]);
 
-    // 2. Generar PDF
-    $pdf = Pdf::loadView('reportes.reportes', ['data' => $validated]);
+    $nombreArchivo = 'reporte_' . Str::slug($validated['nombre_propiedad']) . '_' . now()->format('Ymd_His') . '.pdf';
+    $ruta = "public/reportes/{$nombreArchivo}";
 
-    $matricula = 'reporte_' . Str::slug($validated['nombre_propiedad']) . '_' . now()->format('Ymd_His') . '.pdf';
-    $ruta = "public/reportes/{$matricula}";
-
-    // 3. Guardar PDF en storage/app/public/reportes
+    // Guardar PDF en disco
     Storage::put($ruta, $pdf->output());
 
-    // 4. Obtener URL pública
-    $url = Storage::url("reportes/{$matricula}");
+    // Obtener URL pública
+    $url = Storage::url("reportes/{$nombreArchivo}");
+
+    // Guardar en base de datos incluyendo la URL
+    $reporte = Owner_Create_Report::create(array_merge(
+        $validated,
+        ['archivo_pdf' => $url]
+    ));
 
     return response()->json([
         'mensaje' => 'Reporte creado y PDF generado correctamente.',
         'data'    => $reporte,
         'archivo_pdf' => $url,
     ], 201);
-
-   
 }
+
  //  Ver reportes (filtrados por id_inquilino opcionalmente)
 public function index(Request $request)
 {

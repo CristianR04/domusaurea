@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Owner_Register_Contract;
 use App\Models\contract_file;
 
-class OwnerRegisterContractController extends Controller
+class  OwnerRegisterContractController extends Controller
 {
      public function create(Request $request)
     {

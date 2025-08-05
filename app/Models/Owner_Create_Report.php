@@ -38,5 +38,8 @@ class Owner_Create_Report extends Model
         // Seguimiento
         'contrato',
         'observaciones',
+
+        // ✅ Ruta del archivo PDF
+        'archivo_pdf',
     ];
 }

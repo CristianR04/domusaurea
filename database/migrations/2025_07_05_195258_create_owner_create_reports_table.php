@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('contrato');
             $table->string('impuestos');
             $table->mediumText('observaciones');
+            $table->string('archivo_pdf')->nullable();
             $table->timestamps();
         });
     }
