@@ -77,7 +77,7 @@ public function index(Request $request)
 }
 
 //  Descargar un PDF por nombre de archivo
-public function descargarPorMatricula($matricula)
+public function descargarPDF($matricula)
 {
     // Buscar el último reporte con esa matrícula
     $reporte = Owner_Create_Report::where('matricula_inmobiliaria', $matricula)
