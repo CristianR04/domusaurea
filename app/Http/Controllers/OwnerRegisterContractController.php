@@ -68,7 +68,7 @@ public function contratosPorPropiedad($id_propiedad)
 // 2. Descargar un contrato PDF por ID
 public function descargar($id_contrato)
 {
-    $contracts = contract_file::findOrFail($id_contrato);
+    $contracts = Owner_Register_Contract::findOrFail($id_contrato);
 
     if (!$contracts->archivo_pdf) {
         return response()->json(['mensaje' => 'Este contrato no tiene PDF asociado.'], 404);
