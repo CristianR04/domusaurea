@@ -79,26 +79,30 @@ public function index(Request $request)
 }
 
 //  Descargar un PDF por nombre de archivo
-public function descargarPDF($id_propiedad)
+public function descargarPDF($matricula)
 {
-    // Buscar el último reporte con esa matrícula
-    $reporte = Owner_Create_Report::where('id_propiedad', $id_propiedad)
+    // 1. Buscar el último reporte por matrícula
+    $reporte = Owner_Create_Report::where('matricula_inmobiliaria', $matricula)
                 ->latest()
                 ->first();
 
-    if (!$reporte || !isset($reporte->archivo_pdf)) {
-        return response()->json(['mensaje' => 'Reporte no encontrado para este ID.'], 404);
+    if (!$reporte || !$reporte->archivo_pdf) {
+        return response()->json(['mensaje' => 'Reporte no encontrado para esta matrícula.'], 404);
     }
 
-    // Convertir URL pública a ruta de storage
-    $rutaStorage = str_replace('/storage/', 'public/', $reporte->archivo_pdf);
+    // 2. Obtener el nombre del archivo desde la URL
+    $nombreArchivo = basename($reporte->archivo_pdf); // Solo "reporte_micasa_20250804_132500.pdf"
+    
+    // 3. Construir la ruta completa en storage
+    $ruta = "public/reportes/{$nombreArchivo}";
 
-    if (!Storage::exists($rutaStorage)) {
+    if (!Storage::exists($ruta)) {
         return response()->json(['mensaje' => 'El archivo PDF no se encuentra en el servidor.'], 404);
     }
 
-    // Descargar
-    return Storage::download($rutaStorage, 'reporte_' . $id_propiedad . '.pdf');
+    // 4. Descargar el archivo
+    return Storage::download($ruta, $nombreArchivo);
 }
+
 
 }
