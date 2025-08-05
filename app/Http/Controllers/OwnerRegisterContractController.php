@@ -11,7 +11,7 @@ use App\Models\contract_file;
 
 class OwnerRegisterContractController extends Controller
 {
-     public function store(Request $request)
+     public function create(Request $request)
     {
         $request->validate([
             'id_propiedad' => 'required|exists:owner_register_properties,id_propiedad',
