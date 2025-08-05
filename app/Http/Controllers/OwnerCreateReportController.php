@@ -36,16 +36,16 @@ class OwnerCreateReportController extends Controller
     $reporte = Owner_Create_Report::create($validated);
 
     // 2. Generar PDF
-    $pdf = Pdf::loadView('reportes.reporte', ['data' => $validated]);
+    $pdf = Pdf::loadView('reportes.reportes', ['data' => $validated]);
 
-    $nombreArchivo = 'reporte_' . Str::slug($validated['nombre_propiedad']) . '_' . now()->format('Ymd_His') . '.pdf';
-    $ruta = "public/reportes/{$nombreArchivo}";
+    $matricula = 'reporte_' . Str::slug($validated['nombre_propiedad']) . '_' . now()->format('Ymd_His') . '.pdf';
+    $ruta = "public/reportes/{$matricula}";
 
     // 3. Guardar PDF en storage/app/public/reportes
     Storage::put($ruta, $pdf->output());
 
     // 4. Obtener URL pública
-    $url = Storage::url("reportes/{$nombreArchivo}");
+    $url = Storage::url("reportes/{$matricula}");
 
     return response()->json([
         'mensaje' => 'Reporte creado y PDF generado correctamente.',
