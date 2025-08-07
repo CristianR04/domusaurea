@@ -25,7 +25,7 @@ Route::post('/registro-user', [UserController::class, 'create']);
 //Login
 Route::post('/login', [UserController::class, 'login']);
 //crear un contrato
-Route::post('/contratos/generar', [OwnerRegisterContractController::class, 'store']);
+Route::post('/contratos/generar', [OwnerRegisterContractController::class, 'create']);
 //subir archivo de contratos
 Route::post('/contratos', [ContractFileController::class, 'store']);
 // Ver contratos de una propiedad
@@ -72,3 +72,7 @@ Route::post('/pagos-inquilino', [TenantRegisterPaymentController::class, 'store'
 Route::get('/buscar-propiedad/{id_catastral}', [OwnerRegisterPropertyController::class, 'buscarPorIdCatastral']);
 
 Route::get('/inquilino/buscar/{id_user}', [OwnerRegisterTenantController::class, 'buscarPorIdUser']);
+
+Route::get('/buscar-propiedad-id/{id}', [OwnerRegisterPropertyController::class, 'buscarPorIdPropiedad']);
+
+Route::get('/propiedades', [TenantRegisterPaymentController::class, 'getPropiedades']);

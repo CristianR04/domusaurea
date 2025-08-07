@@ -11,7 +11,7 @@ class TenantCreateRecordatoriesCxPController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'id_inquilino'          => 'required|exists:inquilinos,id',
+            'id_user'          => 'required|exists:Owner_Register_Tenants,id_user',
             'id_propiedad'          => 'required|exists:owner_register_properties,id_propiedad',
             'concepto'              => 'required|string|max:255',
             'monto'                 => 'nullable|numeric|min:0',

@@ -12,6 +12,7 @@ class Owner_Create_Report extends Model
 
     protected $fillable = [
         // Datos generales
+        'id_propiedad',
         'nombre_propiedad',
         'direccion',
         'matricula_inmobiliaria',
@@ -42,4 +43,9 @@ class Owner_Create_Report extends Model
         // ✅ Ruta del archivo PDF
         'archivo_pdf',
     ];
+
+    public function propiedad()
+{
+    return $this->belongsTo(Property::class, 'id_propiedad');
+}
 }

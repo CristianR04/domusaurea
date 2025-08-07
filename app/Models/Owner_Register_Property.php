@@ -45,5 +45,9 @@ class Owner_Register_Property extends Model
     {
         return $this->hasMany(Owner_Payment_Control::class, 'id_pagoc');
     }
+    public function reportes()
+{
+    return $this->hasMany(Owner_Create_Report::class, 'id_propiedad');
+}
 
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('owner_create_reports', function (Blueprint $table) {
             $table->id('id_report');
             //Datos Generales de la Propiedad
+             $table->unsignedBigInteger('id_propiedad');
             $table->string('nombre_propiedad');
             $table->string('direccion');
             $table->string('matricula_inmobiliaria');

@@ -6,13 +6,15 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Tenant_Register_Payment;
+use App\Models\Owner_Register_Tenant;
+
 
 class TenantRegisterPaymentController extends Controller
 {
     public function store(Request $request)
     {
         $request->validate([
-            'id_propiedad'   => 'required|exists:propiedades,id',
+            'id_propiedad'   => 'required|exists:Owner_Register_Tenants,id_propiedad',
             'servicio'       => 'nullable|string|max:100',
             'concepto'       => 'nullable|string|max:255',
             'monto'          => 'required|numeric|min:0.01',
@@ -57,5 +59,12 @@ class TenantRegisterPaymentController extends Controller
             'mensaje' => 'Pago guardado correctamente.',
             'data'    => $pago,
         ], 201);
+    }
+    public function getPropiedades()
+    {
+    // Solo devuelve el campo id_propiedad
+    return response()->json(
+        Owner_Register_Tenant::select('id_propiedad')->get()
+    );
     }
 }

@@ -9,7 +9,7 @@ return new class extends Migration {
         Schema::create('tenant_create_recordatories_cx_p_s', function (Blueprint $table) {
             $table->id('id_recordatorioT');
 
-            $table->unsignedBigInteger('id_inquilino');
+            $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_propiedad');
 
             $table->string('concepto'); // Arriendo, servicios, etc.

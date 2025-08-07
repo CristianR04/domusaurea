@@ -12,6 +12,7 @@ class OwnerCreateReportController extends Controller
 public function store(Request $request)
 {
     $validated = $request->validate([
+        'id_propiedad'            => 'required|integer|exists:owner_register_properties,id_propiedad',
         'nombre_propiedad'        => 'required|string|max:255',
         'direccion'               => 'required|string|max:255',
         'matricula_inmobiliaria'  => 'required|string|max:100',
@@ -67,7 +68,7 @@ public function index(Request $request)
     }
 
     if ($request->has('id_propiedad')) {
-        $query->where('matricula_inmobiliaria', $request->id_propiedad);
+        $query->where('id_propiedad', $request->id_propiedad);
     }
 
     $reportes = $query->orderBy('created_at', 'desc')->get();
@@ -79,10 +80,10 @@ public function index(Request $request)
 }
 
 //  Descargar un PDF por nombre de archivo
-public function descargarPDF($matricula)
+public function descargarPDF($id_propiedad)
 {
     // 1. Buscar el último reporte por matrícula
-    $reporte = Owner_Create_Report::where('matricula_inmobiliaria', $matricula)
+    $reporte = Owner_Create_Report::where('id_propiedad', $id_propiedad)
                 ->latest()
                 ->first();
 
