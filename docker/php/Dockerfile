@@ -1,18 +1,28 @@
-FROM php:8.3-fpm
+FROM php:8.2-fpm
 
-# Instalar dependencias de sistema
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    git unzip libpng-dev libonig-dev libxml2-dev libzip-dev zip curl \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+    git curl zip unzip libpq-dev libonig-dev libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql mbstring zip
 
 # Instalar Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www
+# Crear carpeta de trabajo
+WORKDIR /var/www/api
 
+# Copiar archivos del proyecto
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader \
-    && php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+# Instalar dependencias PHP
+RUN composer install
+
+# Copiar el script de entrada (para permisos, migraciones, etc.)
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Establecer el punto de entrada
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Comando por defecto
+CMD ["php-fpm"]
