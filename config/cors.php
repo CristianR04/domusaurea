@@ -7,8 +7,8 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-    'http://localhost:5173',
-    'http://144.126.216.130:5173',
+        'http://domusaurea.geekcorplab.com',
+        'https://domusaurea.geekcorplab.com',
 ],
 
 
